@@ -2,6 +2,7 @@ package com.px.dao;
 
 import com.px.dto.PageBean;
 import com.px.entity.Customer;
+import com.px.service.CustomerService;
 import junit.framework.TestCase;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -18,6 +19,9 @@ public class CustomerDaoTest extends TestCase{
 
     @Autowired
     public CustomerDao customerDao;
+
+    @Autowired
+    private CustomerService customerService;
 
 
     @Test
@@ -58,5 +62,12 @@ public class CustomerDaoTest extends TestCase{
     public void delete_test(){
         String id = "1024";
         customerDao.delete(id);
+    }
+
+    @Test
+    public void aopTest(){
+        String id = "1026";
+        Customer customer = customerService.find(id);
+        logger.info("return value: ----->" + customer.toString());
     }
 }
